@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Video</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img class="logo_img" src="IMG/logo.png" alt="logo">
+                <div class="text_logo">
+                    <img src="IMG/Jirafeitor title.png" alt="Logo text">
+                </div>
+            </a>
+        </div>
+        <div class="search">
+            <input type="text">
+            <button><img src="IMG/search.png" alt="search button"></button>
+        </div>
+        <div class="login">
+            <a href="upload.html" id="uploadBtn" class="upload-btn" style="margin-right:10px;"><button type="button"><b>Subir video</b></button></a>
+            <button id="userBtn"><b>Login</b></button>
+        </div>
+    </header>
+    <main style="display:flex;justify-content:center;align-items:center;height:80vh;">
+        <section style="width:100%;max-width:440px;background:#1a1a1a;padding:32px 24px;border-radius:16px;box-shadow:0 4px 24px;">
+            <h2 style="color:#FAA800;text-align:center;margin-bottom:24px;">Subir un video</h2>
+            <form id="uploadForm" style="display:flex;flex-direction:column;gap:18px;">
+                <input type="text" id="videoName" placeholder="Título del video" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
+                <textarea id="videoDesc" placeholder="Descripción" rows="3" style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;"></textarea>
+                <input type="file" id="videoFile" accept="video/*" required style="padding:10px;border-radius:8px;background:#100E0B;color:#fff;">
+                <button type="submit" style="background:#FAA800;color:#100E0B;padding:10px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Subir</button>
+                <span id="uploadMsg" style="color:#FAA800;text-align:center;"></span>
+            </form>
+        </section>
+    </main>
+    <script src="js/upload.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

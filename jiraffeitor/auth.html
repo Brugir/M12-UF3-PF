@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Login / Registro</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img class="logo_img" src="IMG/logo.png" alt="logo">
+                <div class="text_logo">
+                    <img src="IMG/Jirafeitor title.png" alt="Logo text">
+                </div>
+            </a>
+        </div>
+        <div class="search">
+            <input type="text">
+            <button><img src="IMG/search.png" alt="search button"></button>
+        </div>
+        <div class="login">
+            <button disabled style="opacity:0.7;cursor:default;"><b>Login</b></button>
+        </div>
+    </header>
+    <div style="display:flex;justify-content:center;align-items:center;height:80vh;">
+        <div style="width:100%;max-width:400px;">
+            <!-- Copiar el modal de login/registro aquí, pero visible siempre -->
+            <div style="background:#1a1a1a;border-radius:16px;padding:32px 24px;box-shadow:0 4px 24px;">
+                <div style="display:flex;justify-content:center;margin-bottom:16px;gap:16px;">
+                    <button id="tabLogin" style="background:none;border:none;color:#FAA800;font-size:1.1em;font-weight:bold;cursor:pointer;">Iniciar Sesión</button>
+                    <span style="color:#FAA800;">|</span>
+                    <button id="tabRegister" style="background:none;border:none;color:#FAA800;font-size:1.1em;font-weight:bold;cursor:pointer;">Registrarse</button>
+                </div>
+                <!-- Login Form -->
+                <form id="loginForm" style="display:flex;flex-direction:column;gap:16px;">
+                    <input id="loginUsername" type="text" placeholder="Usuario" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
+                    <input id="loginPassword" type="password" placeholder="Contraseña" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
+                    <span id="loginError" style="color:#ff5050;text-align:center;"></span>
+                    <button type="submit" style="background:#FAA800;color:#100E0B;padding:10px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Entrar</button>
+                </form>
+                <!-- Register Form -->
+                <form id="registerForm" style="display:none;flex-direction:column;gap:16px;">
+                    <input id="registerUsername" type="text" placeholder="Usuario" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
+                    
+                    <input id="registerPassword" type="password" placeholder="Contraseña" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
+                    <input id="registerPassword2" type="password" placeholder="Repite la contraseña" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
+                    <span id="registerError" style="color:#ff5050;text-align:center;"></span>
+                    <button type="submit" style="background:#FAA800;color:#100E0B;padding:10px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/login.js"></script>
+</body>
+</html>

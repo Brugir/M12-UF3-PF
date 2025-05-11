@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Ver Video</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img class="logo_img" src="IMG/logo.png" alt="logo">
+                <div class="text_logo">
+                    <img src="IMG/Jirafeitor title.png" alt="Logo text">
+                </div>
+            </a>
+        </div>
+        <div class="search">
+            <input type="text">
+            <button><img src="IMG/search.png" alt="search button"></button>
+        </div>
+        <div class="login">
+    <a href="upload.html" id="uploadBtn" class="upload-btn" style="margin-right:10px;"><button type="button"><b>Subir video</b></button></a>
+    <button id="userBtn"><b>Login</b></button>
+</div>
+    </header>
+    <div class="video-page-flex">
+        <div class="video-main-col">
+            <div class="video-player" id="videoPlayer"></div>
+            <div class="description" id="videoDesc"></div>
+        </div>
+        <aside class="video-sidebar">
+            <h2 style="color:#FAA800;margin-bottom:12px;">Videos recientes</h2>
+            <div id="recentVideos"></div>
+        </aside>
+    </div>
+    <script src="js/login.js"></script>
+    <script src="js/video_view.js"></script>
+</body>
+</html>

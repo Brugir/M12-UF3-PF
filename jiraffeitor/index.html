@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header" >
+        <div class="logo">
+            <a href="index.html" class="logo-link">
+                <img class="logo_img" src="IMG/logo.png" alt="logo">
+                <div class="text_logo">
+                    <img src="IMG/Jirafeitor title.png" alt="Logo text">
+                </div>
+            </a>
+        </div>
+
+        <div class="search">
+            <input type="text">
+            <button><img src="IMG/search.png" alt="search button"></button>
+        </div>
+
+        <div class="login">
+    <a href="upload.html" id="uploadBtn" class="upload-btn" style="margin-right:10px;"><button type="button"><b>Subir video</b></button></a>
+    <button id="userBtn"><b>Login</b></button>
+</div>
+    </header>
+
+    
+    <div class="video-gallery">
+
+        <h2>Recientes</h2>
+
+        <div class="video-row">
+            <!-- Los videos se cargarán dinámicamente desde la API por videos.js -->
+        </div>
+
+    </div>
+    
+
+
+
+    <div class="root"> <!--  <-- React   -->
+    </div>
+
+    <footer>
+
+    </footer>
+
+    <script src="js/login.js"></script>
+    <script src="js/videos.js"></script>
+</body>
+</html>
