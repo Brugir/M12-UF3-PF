@@ -12,7 +12,6 @@ Estructura del proyecto:
    - style.css: Estilos globales y unificados.
    - video.css: (vacío, no se usa, pero se deja para compatibilidad).
 - IMG/: Imágenes usadas en la web (logo, miniaturas, etc).
-- VIDEOS/: Carpeta de ejemplo, puedes eliminar el mp4 si no lo necesitas.
 
 Archivos innecesarios eliminados: video1.html, video2.html.
 
