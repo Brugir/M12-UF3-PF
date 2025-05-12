@@ -116,6 +116,7 @@ body{
 }
 
 
+/* Responsive login button */
 .login button{
     border: none;
     min-width: 75px;
@@ -132,6 +133,33 @@ body{
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Responsive adjustments for all buttons on mobile */
+@media (max-width: 600px) {
+  .login button,
+  button,
+  input[type="submit"],
+  input[type="button"] {
+    font-size: 0.85em !important;
+    min-width: 56px !important;
+    height: 28px !important;
+    padding: 0 10px !important;
+  }
+  .login {
+    padding: 10px !important;
+  }
+}
+
+/* Responsive adjustments for form buttons inside modals/sections */
+@media (max-width: 600px) {
+  form button,
+  .comment-box button {
+    font-size: 0.85em !important;
+    padding: 6px 10px !important;
+    height: 28px !important;
+    min-width: 56px !important;
+  }
 }
 
 

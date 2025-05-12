@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (token && username) {
         loginBtn.innerHTML = `<b>${username}</b>`;
         loginBtn.onmouseenter = function() {
-            loginBtn.innerHTML = '<b>Cerrar sesión</b>';
+            loginBtn.innerHTML = '<b>Logout</b>';
         };
         loginBtn.onmouseleave = function() {
             loginBtn.innerHTML = `<b>${username}</b>`;

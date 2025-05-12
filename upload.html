@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subir Video</title>
     <link rel="stylesheet" href="CSS/style.css">
+    <title>Subir Video</title>
 </head>
+
 <body>
     <header class="header">
         <div class="logo">
@@ -21,23 +23,66 @@
             <button><img src="IMG/search.png" alt="search button"></button>
         </div>
         <div class="login">
-            <a href="upload.html" id="uploadBtn" class="upload-btn" style="margin-right:10px;"><button type="button"><b>Subir video</b></button></a>
+            <a href="upload.html" id="uploadBtn" class="upload-btn" style="margin-right:10px;"><button type="button"><b>Upload video</b></button></a>
             <button id="userBtn"><b>Login</b></button>
         </div>
     </header>
-    <main style="display:flex;justify-content:center;align-items:center;height:80vh;">
-        <section style="width:100%;max-width:440px;background:#1a1a1a;padding:32px 24px;border-radius:16px;box-shadow:0 4px 24px;">
-            <h2 style="color:#FAA800;text-align:center;margin-bottom:24px;">Subir un video</h2>
-            <form id="uploadForm" style="display:flex;flex-direction:column;gap:18px;">
-                <input type="text" id="videoName" placeholder="Título del video" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
-                <textarea id="videoDesc" placeholder="Descripción" rows="3" style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;"></textarea>
-                <input type="file" id="videoFile" accept="video/*" required style="padding:10px;border-radius:8px;background:#100E0B;color:#fff;">
-                <button type="submit" style="background:#FAA800;color:#100E0B;padding:10px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Subir</button>
-                <span id="uploadMsg" style="color:#FAA800;text-align:center;"></span>
-            </form>
+    <main style="display:flex;justify-content:center;align-items:center;min-height:80vh;background:none;">
+        <section style="width:100%;max-width:400px;">
+            <div id="uploadContainer"></div>
         </section>
     </main>
-    <script src="js/upload.js"></script>
+
     <script src="js/login.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.getElementById('uploadContainer');
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            container.innerHTML = `<div style="text-align:center;color:#FAA800;background:#1a1a1a;padding:32px 24px;border-radius:16px;border:2px solid #FAA800;font-size:1.1em;margin-top:60px;">You must login or register to upload videos.</div>`;
+        } else {
+            container.innerHTML = `
+            <form id="uploadForm" action="https://giraffe.niliara.net/api/upload" method="POST" enctype="multipart/form-data" style="background:#1a1a1a;border-radius:16px;border:2px solid #FAA800;padding:32px 24px;display:flex;flex-direction:column;gap:18px;">
+                <h2 style="color:#FAA800;text-align:center;margin-bottom:10px;">Upload Video</h2>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                    <label for="name" style="color:#FAA800;font-weight:bold;">Name</label>
+                    <input type="text" id="name" name="name" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                    <label for="description" style="color:#FAA800;font-weight:bold;">Description</label>
+                    <textarea id="description" name="description" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;"></textarea>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                    <label for="video" style="color:#FAA800;font-weight:bold;">Video file</label>
+                    <input type="file" id="video" name="video" accept="video/*" required style="padding:10px;border-radius:8px;border:1px solid #FAA800;background:#100E0B;color:#fff;">
+                </div>
+                <button type="submit" style="background:#FAA800;color:#100E0B;padding:10px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Upload</button>
+            </form>`;
+            const form = document.getElementById('uploadForm');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        alert('Upload successful!');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Upload failed.');
+                    });
+            });
+        }
+    });
+</script>
 </body>
+
 </html>
