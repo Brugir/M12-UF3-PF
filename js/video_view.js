@@ -66,24 +66,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     // Cargar videos recientes en la barra lateral
-    fetch('https://giraffe.niliara.net/api/videos')
-        .then(res => res.ok ? res.json() : [])
-        .then(videos => {
-            if (!videos || videos.length === 0) return;
-            videos.sort((a, b) => b.id - a.id);
-            const recent = videos.slice(0, 6);
-            const recentVideosDiv = document.getElementById('recentVideos');
-            if (!recentVideosDiv) return;
-            recentVideosDiv.innerHTML = '';
-            recent.forEach(video => {
-                const a = document.createElement('a');
-                a.href = `video.html?id=${video.id}`;
-                a.className = 'recent-video-item';
-                a.innerHTML = `
-                    <img src="https://giraffe.niliara.net/api/video/thumb/${video.id}" alt="${video.name}" class="recent-video-thumb">
-                    <span class="recent-video-title">${video.name}</span>
-                `;
-                recentVideosDiv.appendChild(a);
-            });
+    // Fetch related videos after loading the main video info
+    let videoTitle = '';
+    fetch(`https://giraffe.niliara.net/api/video/info/${id}`)
+        .then(res => res.ok ? res.json() : null)
+        .then(video => {
+            if (!video) {
+                videoPlayer.innerHTML = '<p style="color:#FAA800">No se ha encontrado el video.</p>';
+                return;
+            }
+            const videoUrl = `https://giraffe.niliara.net/api/video/source/${video.id}`;
+            const thumbUrl = `https://giraffe.niliara.net/api/video/thumb/${video.id}`;
+            videoPlayer.innerHTML = `
+                <video controls width="100%" poster="${thumbUrl}">
+                    <source src="${videoUrl}" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                <h1>${video.name}</h1>
+                <div style="margin:10px 0;">
+                    <a href="${videoUrl}" target="_blank" style="color:#FAA800;">Ver archivo de video directamente</a>
+                </div>
+            `;
+            videoDesc.textContent = video.description || '';
+            videoTitle = video.name;
+            // Fetch related videos using the video title
+            fetch(`https://giraffe.niliara.net/api/videos/search?term=${encodeURIComponent(videoTitle)}`)
+                .then(res => res.ok ? res.json() : [])
+                .then(relatedVideos => {
+                    const relatedVideosDiv = document.getElementById('relatedVideos');
+                    if (!relatedVideosDiv) return;
+                    relatedVideosDiv.innerHTML = '';
+                    // Remove the current video from the related list
+                    relatedVideos = relatedVideos.filter(v => v.id !== video.id);
+                    if (relatedVideos.length === 0) {
+                        relatedVideosDiv.innerHTML = '<p style="color:#FAA800;text-align:center;">No related videos found.</p>';
+                        return;
+                    }
+                    relatedVideos.slice(0, 6).forEach(video => {
+                        const a = document.createElement('a');
+                        a.href = `video.html?id=${video.id}`;
+                        a.className = 'recent-video-item';
+                        a.innerHTML = `
+                            <img src="https://giraffe.niliara.net/api/video/thumb/${video.id}" alt="${video.name}" class="recent-video-thumb">
+                            <span class="recent-video-title">${video.name}</span>
+                        `;
+                        relatedVideosDiv.appendChild(a);
+                    });
+                });
+        })
+        .catch(() => {
+            videoPlayer.innerHTML = '<p style="color:#FAA800">No se pudo cargar el video.</p>';
         });
 });
